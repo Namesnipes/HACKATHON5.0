@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Button from '../components/Button'
 import ClickCount from '../components/ClickCount'
 import styles from '../styles/home.module.css'
-import SentimentAnalysis from '../components/classifier.js'
+// import SentimentAnalysis from '../components/classifier.js'
 
 // Load wink-nlp package.
 const winkNLP = require( 'wink-nlp' );
@@ -54,7 +54,7 @@ function Home() {
         <h1 class="text-3xl font-bold underline">
     Hello world!
   </h1>
-  <SentimentAnalysis />
+  {/* <SentimentAnalysis /> */}
       <h1>Fast Refresh Demo</h1>
       <p>
         Fast Refresh is a Next.js feature that gives you instantaneous feedback
