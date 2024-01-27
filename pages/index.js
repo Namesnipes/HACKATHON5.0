@@ -5,26 +5,6 @@ import styles from '../styles/home.module.css'
 var sentiment = require( 'wink-sentiment' );
 console.log(sentiment( 'Excited to be part of the @imascientist team:-)!' ))
 
-// Load wink-nlp package.
-const winkNLP = require( 'wink-nlp' );
-// Load english language model — light version.
-const model = require( 'wink-eng-lite-web-model' );
-// Instantiate winkNLP.
-const nlp = winkNLP( model );
-// Obtain "its" helper to extract item properties.
-const its = nlp.its;
-// Obtain "as" reducer helper to reduce a collection.
-const as = nlp.as;
-
-const text = 'Hello   World🌎! How are you?';
-const doc = nlp.readDoc( text );
-
-console.log( doc.out() );
-// -> Hello   World🌎! How are you?
-
-console.log( doc.tokens().out( its.type, as.freqTable ) );
-// -> [ [ 'word', 5 ], [ 'punctuation', 2 ], [ 'emoji', 1 ] ]
-
 
 function throwError() {
   console.log(
