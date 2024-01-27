@@ -2,6 +2,10 @@ import { useCallback, useEffect, useState } from 'react'
 import Button from '../components/Button'
 import ClickCount from '../components/ClickCount'
 import styles from '../styles/home.module.css'
+import Link from 'next/link';
+// import MyEditor from '../components/textEditor'
+
+
 var sentiment = require( 'wink-sentiment' );
 console.log(sentiment( 'Excited to be part of the @imascientist team:-)!' ))
 
@@ -55,7 +59,8 @@ function Home() {
         <h1 class="text-3xl font-bold underline">
     Hello world!
   </h1>
-      <h1>Fast Refresh Demo</h1>
+  <Link href={"/SomePageThatNeedsATextEditor" } >try out this cool text editor dawg</Link>
+      <h1>Fast Refresh not Demo</h1>
       <p>
         Fast Refresh is a Next.js feature that gives you instantaneous feedback
         on edits made to your React components, without ever losing component
