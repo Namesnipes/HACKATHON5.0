@@ -2,32 +2,13 @@ import { useCallback, useEffect, useState } from 'react'
 import Button from '../components/Button'
 import ClickCount from '../components/ClickCount'
 import styles from '../styles/home.module.css'
+import { jumpToSection } from './Helpers/Helper'
 import Link from 'next/link';
 // import MyEditor from '../components/textEditor'
 
 
-var sentiment = require( 'wink-sentiment' );
-console.log(sentiment( 'Excited to be part of the @imascientist team:-)!' ))
-
-// Load wink-nlp package.
-const winkNLP = require( 'wink-nlp' );
-// Load english language model — light version.
-const model = require( 'wink-eng-lite-web-model' );
-// Instantiate winkNLP.
-const nlp = winkNLP( model );
-// Obtain "its" helper to extract item properties.
-const its = nlp.its;
-// Obtain "as" reducer helper to reduce a collection.
-const as = nlp.as;
-
-const text = 'Hello   World🌎! How are you?';
-const doc = nlp.readDoc( text );
-
-console.log( doc.out() );
-// -> Hello   World🌎! How are you?
-
-console.log( doc.tokens().out( its.type, as.freqTable ) );
-// -> [ [ 'word', 5 ], [ 'punctuation', 2 ], [ 'emoji', 1 ] ]
+var sentiment = require('wink-sentiment');
+console.log(sentiment('Excited to be part of the @imascientist team:-)!'))
 
 
 function throwError() {
@@ -40,11 +21,20 @@ function throwError() {
 
 function Home() {
   const [count, setCount] = useState(0)
+  
+  // Text that gets updated on textbox change
+  const [text, setText] = useState("Enter Text");
+
+  // Stores a score of the sentiment of the text variable
+  const sentimentOfTextBox = sentiment(text).score
+  console.log(sentimentOfTextBox)
+
   const increment = useCallback(() => {
+
     setCount((v) => v + 1)
   }, [setCount])
 
-  useEffect(() => {
+  useEffect(() => { 
     const r = setInterval(() => {
       increment()
     }, 1000)
@@ -56,9 +46,19 @@ function Home() {
 
   return (
     <main className={styles.main}>
-        <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+      <p>
+          GO TO A SECTION!!
+        </p>
+        <Button
+          onClick={(e) => {
+            jumpToSection("section2")
+          }}
+        >
+          Go to section 1
+        </Button>
+      <h1 class="text-3xl font-bold underline">
+        Hello world!
+      </h1>
   <Link href={"/SomePageThatNeedsATextEditor" } >try out this cool text editor dawg</Link>
       <h1>Fast Refresh not Demo</h1>
       <p>
@@ -81,22 +81,56 @@ function Home() {
       </div>
       <hr className={styles.hr} />
       <div>
-        <p>
-          The button below will throw 2 errors. You'll see the error overlay to
-          let you know about the errors but it won't break the page or reset
-          your state.
-        </p>
-        <Button
-          onClick={(e) => {
-            setTimeout(() => document.parentNode(), 0)
-            throwError()
-          }}
-        >
-          Throw an Error
-        </Button>
       </div>
+      <div>
+        <br></br>
+        <form method="post">
+        <input
+          name="textbox"
+          type="text"
+          defaultValue="Enter text"
+          onChange={e => setText(e.target.value)}
+        />
+        </form>
+      </div>
+
       <hr className={styles.hr} />
+      <section id="section1">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h2>Section 1</h2>
+        <p>This is the content of Section 1.</p>
+      </section>
+
+      <section id="section2">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h2>Section 2</h2>
+        <p>This is the content of Section 2.</p>
+      </section>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+      <section id="section3">
+        <h2>Section 3</h2>
+        <p>This is the content of Section 3.</p>
+      </section>
     </main>
+
   )
 }
 
