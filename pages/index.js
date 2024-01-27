@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from 'react'
 import Button from '../components/Button'
 import ClickCount from '../components/ClickCount'
 import styles from '../styles/home.module.css'
+var sentiment = require( 'wink-sentiment' );
+console.log(sentiment( 'Excited to be part of the @imascientist team:-)!' ))
 // import SentimentAnalysis from '../components/classifier.js'
 
 // Load wink-nlp package.
