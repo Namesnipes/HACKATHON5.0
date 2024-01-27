@@ -16,6 +16,14 @@ function throwError() {
 
 function Home() {
   const [count, setCount] = useState(0)
+  
+  // Text that gets updated on textbox change
+  const [text, setText] = useState("Enter Text");
+
+  // Stores a score of the sentiment of the text variable
+  const sentimentOfTextBox = sentiment(text).score
+  console.log(sentimentOfTextBox)
+
   const increment = useCallback(() => {
     setCount((v) => v + 1)
   }, [setCount])
@@ -70,6 +78,18 @@ function Home() {
           Throw an Error
         </Button>
       </div>
+      <div>
+        <br></br>
+        <form method="post">
+        <input
+          name="textbox"
+          type="text"
+          defaultValue="Enter text"
+          onChange={e => setText(e.target.value)}
+        />
+        </form>
+      </div>
+
       <hr className={styles.hr} />
     </main>
   )
