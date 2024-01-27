@@ -2,8 +2,9 @@ import { useCallback, useEffect, useState } from 'react'
 import Button from '../components/Button'
 import ClickCount from '../components/ClickCount'
 import styles from '../styles/home.module.css'
-var sentiment = require( 'wink-sentiment' );
-console.log(sentiment( 'Excited to be part of the @imascientist team:-)!' ))
+import { jumpToSection } from './Helpers/Helper'
+var sentiment = require('wink-sentiment');
+console.log(sentiment('Excited to be part of the @imascientist team:-)!'))
 
 
 function throwError() {
@@ -17,10 +18,11 @@ function throwError() {
 function Home() {
   const [count, setCount] = useState(0)
   const increment = useCallback(() => {
+
     setCount((v) => v + 1)
   }, [setCount])
 
-  useEffect(() => {
+  useEffect(() => { 
     const r = setInterval(() => {
       increment()
     }, 1000)
@@ -32,9 +34,19 @@ function Home() {
 
   return (
     <main className={styles.main}>
-        <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+      <p>
+          GO TO A SECTION!!
+        </p>
+        <Button
+          onClick={(e) => {
+            jumpToSection("section2")
+          }}
+        >
+          Go to section 1
+        </Button>
+      <h1 class="text-3xl font-bold underline">
+        Hello world!
+      </h1>
       <h1>Fast Refresh Demo</h1>
       <p>
         Fast Refresh is a Next.js feature that gives you instantaneous feedback
@@ -56,22 +68,44 @@ function Home() {
       </div>
       <hr className={styles.hr} />
       <div>
-        <p>
-          The button below will throw 2 errors. You'll see the error overlay to
-          let you know about the errors but it won't break the page or reset
-          your state.
-        </p>
-        <Button
-          onClick={(e) => {
-            setTimeout(() => document.parentNode(), 0)
-            throwError()
-          }}
-        >
-          Throw an Error
-        </Button>
       </div>
       <hr className={styles.hr} />
+      <section id="section1">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h2>Section 1</h2>
+        <p>This is the content of Section 1.</p>
+      </section>
+
+      <section id="section2">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h2>Section 2</h2>
+        <p>This is the content of Section 2.</p>
+      </section>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+      <section id="section3">
+        <h2>Section 3</h2>
+        <p>This is the content of Section 3.</p>
+      </section>
     </main>
+
   )
 }
 
